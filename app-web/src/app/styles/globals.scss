@@ -1,0 +1,71 @@
+@use './variables' as *;
+@use './themes';
+@use './mixins' as *;
+
+html,
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  @include transition(background-color, color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  @include transition(background-color, color);
+}
+
+/* Keep toasts readable and safely positioned on phones. */
+[data-sonner-toaster] [data-sonner-toast][data-styled='true'] {
+  max-width: min(420px, calc(100vw - 2rem));
+}
+
+[data-sonner-toaster] [data-sonner-toast][data-styled='true'] [data-content] {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+@media (max-width: 768px) {
+  [data-sonner-toaster] {
+    --mobile-offset-top: calc(env(safe-area-inset-top, 0px) + 4.5rem);
+    --mobile-offset-bottom: calc(env(safe-area-inset-bottom, 0px) + 1rem);
+    --mobile-offset-left: 0.75rem;
+    --mobile-offset-right: 0.75rem;
+  }
+
+  [data-sonner-toaster][data-x-position='right'] {
+    left: var(--mobile-offset-left);
+    right: var(--mobile-offset-right);
+  }
+
+  [data-sonner-toaster][data-x-position='right'] [data-sonner-toast] {
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+
+nextjs-portal {
+  display: none !important;
+}

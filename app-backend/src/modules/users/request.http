@@ -1,0 +1,82 @@
+### Variables
+@baseUrl = http://localhost:3000
+@authToken = your_jwt_token_here
+@refreshToken = your_refresh_token_here
+
+### Register a new user
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "email": "john@example.com",
+    "password": "password123"
+}
+
+### Login with email/password
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "john@example.com",
+    "password": "password123"
+}
+
+### Refresh access token
+POST {{baseUrl}}/auth/refresh
+Content-Type: application/json
+
+{
+    "refresh_token": "{{refreshToken}}"
+}
+
+### Logout (requires authentication)
+POST {{baseUrl}}/auth/logout
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+    "refresh_token": "{{refreshToken}}"
+}
+
+### Initiate Google OAuth Login
+GET {{baseUrl}}/auth/google
+
+### Google OAuth Callback (this is handled automatically by the OAuth flow)
+GET {{baseUrl}}/auth/google/callback
+
+### Find User by ID (requires authentication)
+GET {{baseUrl}}/users/:id
+Authorization: Bearer {{authToken}}
+
+### Find User by Email (requires authentication)
+GET {{baseUrl}}/users/email/:email
+Authorization: Bearer {{authToken}}
+
+# Response Examples:
+
+### Register Response
+# {
+#     "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+#     "refresh_token": "123e4567-e89b-12d3-a456-426614174000"
+# }
+
+### Login Response
+# {
+#     "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+#     "refresh_token": "123e4567-e89b-12d3-a456-426614174000"
+# }
+
+### Refresh Token Response
+# {
+#     "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+# }
+
+### User Response
+# {
+#     "id": "123e4567-e89b-12d3-a456-426614174000",
+#     "name": "John Doe",
+#     "email": "john@example.com",
+#     "createdAt": "2024-01-01T00:00:00.000Z",
+#     "updatedAt": "2024-01-01T00:00:00.000Z"
+# } 

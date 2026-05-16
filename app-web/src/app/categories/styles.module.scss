@@ -1,0 +1,328 @@
+@use '../styles/variables' as *;
+
+.container {
+    padding: $spacing-lg;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @media (max-width: $breakpoint-md) {
+        padding: $spacing-md;
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-lg;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+
+    h1 {
+        color: var(--text-color);
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0;
+    }
+}
+
+.addButton {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: $spacing-sm $spacing-md;
+    background-color: var(--alternative-bg-color);
+    color: white;
+    border: none;
+    border-radius: $border-radius;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    &:hover {
+        opacity: 0.9;
+    }
+}
+
+.tableContainer {
+    background-color: var(--card-bg);
+    border-radius: $border-radius;
+    border: 1px solid var(--border-color);
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+        padding: $spacing-md;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+        background-color: var(--sidebar-bg);
+        color: var(--text-color);
+        font-weight: 600;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+    }
+
+    td {
+        color: var(--text-color);
+        font-size: 0.9rem;
+    }
+
+    tr:last-child td {
+        border-bottom: none;
+    }
+
+    tr:hover td {
+        background-color: var(--sidebar-bg);
+    }
+}
+
+.statusBadge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    &.active {
+        background-color: rgba($positive-color, 0.15);
+        color: $positive-color;
+    }
+
+    &.inactive {
+        background-color: rgba($negative-color, 0.15);
+        color: $negative-color;
+    }
+}
+
+.actions {
+    display: flex;
+    gap: $spacing-sm;
+}
+
+.actionButton {
+    padding: 6px;
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+        background-color: var(--sidebar-bg);
+    }
+
+    &.delete:hover {
+        border-color: $negative-color;
+        color: $negative-color;
+    }
+}
+
+.emptyState {
+    text-align: center;
+    padding: $spacing-lg * 2;
+    color: var(--text-color);
+    opacity: 0.6;
+}
+
+.modalContent {
+    padding: $spacing-lg;
+    width: 450px;
+    max-width: 95vw;
+
+    @media (max-width: $breakpoint-md) {
+        width: 95vw;
+    }
+
+    h2 {
+        color: var(--text-color);
+        font-size: 1.25rem;
+        margin: 0 0 $spacing-lg 0;
+    }
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+
+    label {
+        color: var(--text-color);
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+
+    input,
+    select,
+    textarea {
+        padding: $spacing-md;
+        border: 1px solid var(--border-color);
+        border-radius: $border-radius;
+        font-size: 1rem;
+        background-color: var(--card-bg);
+        color: var(--text-color);
+        font-family: inherit;
+
+        &::placeholder {
+            color: var(--text-color);
+            opacity: 0.5;
+        }
+
+        &:focus {
+            outline: none;
+            border-color: var(--color-input-focus);
+        }
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+}
+
+.radioGroup {
+    display: flex;
+    gap: $spacing-md;
+}
+
+.radioLabel {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    cursor: pointer;
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+.inputError {
+    border-color: $negative-color !important;
+}
+
+.errorMessage {
+    color: $negative-color;
+    font-size: 0.8rem;
+}
+
+.formActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: $spacing-md;
+    margin-top: $spacing-md;
+}
+
+.cancelButton {
+    padding: $spacing-sm $spacing-md;
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: $border-radius;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+        background-color: var(--sidebar-bg);
+    }
+}
+
+.submitButton {
+    padding: $spacing-sm $spacing-md;
+    background-color: var(--alternative-bg-color);
+    color: white;
+    border: none;
+    border-radius: $border-radius;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    &:hover {
+        opacity: 0.9;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: $spacing-lg * 2;
+    color: var(--text-color);
+    opacity: 0.6;
+}
+
+.mobileCards {
+    display: none;
+
+    @media (max-width: $breakpoint-md) {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-md;
+    }
+}
+
+.mobileCard {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: $border-radius;
+    padding: $spacing-md;
+}
+
+.mobileCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: $spacing-sm;
+
+    h4 {
+        margin: 0;
+        color: var(--text-color);
+        font-size: 1rem;
+        font-weight: 600;
+    }
+}
+
+.mobileCardBody {
+    margin-bottom: $spacing-md;
+
+    p {
+        margin: 0;
+        color: var(--text-color);
+        opacity: 0.7;
+        font-size: 0.85rem;
+    }
+}
+
+.mobileCardFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: $spacing-sm;
+    border-top: 1px solid var(--border-color);
+}
+
+.desktopOnly {
+    @media (max-width: $breakpoint-md) {
+        display: none;
+    }
+}

@@ -1,0 +1,54 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.container {
+    position: relative;
+    width: 100%;
+}
+
+.select {
+    width: 100%;
+    padding: $spacing-sm $spacing-md;
+    border: 1px solid var(--border-color);
+    border-radius: $border-radius;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    @include transition(border-color);
+
+    &:hover {
+        border-color: var(--accent-color);
+    }
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    min-height: 200px;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: $spacing-sm;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: $border-radius;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.option {
+    padding: $spacing-sm $spacing-md;
+    color: var(--text-color);
+    cursor: pointer;
+    @include transition(background-color);
+
+    &:hover {
+        background-color: var(--alternative-bg-color);
+    }
+
+    &.selected {
+        background-color: var(--accent-color);
+        color: var(--text-color-reverse);
+    }
+}

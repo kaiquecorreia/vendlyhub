@@ -1,0 +1,52 @@
+@use '../styles/variables' as *;
+
+.currencyInputRow {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: $border-radius;
+  background: var(--card-bg);
+  overflow: hidden;
+  transition: border-color 0.15s ease;
+
+  &:focus-within {
+    border-color: var(--color-input-focus);
+  }
+}
+
+.currencyInputRowError {
+  border-color: var(--color-error) !important;
+}
+
+.currencyPrefix {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 $spacing-sm 0 $spacing-md;
+  color: var(--text-color);
+  white-space: nowrap;
+  opacity: 0.8;
+}
+
+/* Full-width BRL value field with separated prefix */
+.currencyInput {
+  flex: 1;
+  width: 100%;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: $spacing-md $spacing-md $spacing-md 0;
+  font-size: 1rem;
+  background: transparent !important;
+  color: var(--text-color);
+  box-shadow: none !important;
+
+  &::placeholder {
+    color: var(--text-color);
+    opacity: 0.45;
+  }
+
+  &:focus {
+    outline: none;
+    border: none !important;
+  }
+}

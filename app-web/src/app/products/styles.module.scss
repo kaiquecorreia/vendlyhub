@@ -1,0 +1,935 @@
+@use '../styles/variables' as *;
+
+.container {
+    padding: $spacing-lg;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    @media (max-width: $breakpoint-md) {
+        padding: $spacing-md;
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-lg;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+
+    h1 {
+        color: var(--text-color);
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    @media (max-width: $breakpoint-md) {
+        flex-direction: column;
+        align-items: stretch;
+
+        h1 {
+            font-size: 1.25rem;
+            text-align: center;
+        }
+    }
+}
+
+.headerButtons {
+    display: flex;
+    gap: $spacing-sm;
+    flex-wrap: wrap;
+
+    @media (max-width: $breakpoint-md) {
+        flex-direction: column;
+
+        button {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+}
+
+.addButton {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: $spacing-sm $spacing-md;
+    background-color: var(--alternative-bg-color);
+    color: white;
+    border: none;
+    border-radius: $border-radius;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    &:hover {
+        opacity: 0.9;
+    }
+}
+
+@keyframes shareCatalogPulse {
+    0%,
+    100% {
+        opacity: 1;
+        box-shadow:
+            0 2px 8px color-mix(in srgb, var(--alternative-bg-color) 40%, transparent),
+            0 0 0 0 color-mix(in srgb, var(--alternative-bg-color) 50%, transparent);
+    }
+
+    50% {
+        opacity: 0.88;
+        box-shadow:
+            0 4px 18px color-mix(in srgb, var(--alternative-bg-color) 55%, transparent),
+            0 0 0 4px color-mix(in srgb, var(--alternative-bg-color) 22%, transparent);
+    }
+}
+
+.shareCatalogCta {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: $spacing-sm $spacing-md;
+    background-color: var(--alternative-bg-color);
+    color: white;
+    border: none;
+    border-radius: $border-radius;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    animation: shareCatalogPulse 2s ease-in-out infinite;
+
+    &:hover {
+        opacity: 0.95;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        animation: none;
+        box-shadow: 0 2px 10px color-mix(in srgb, var(--alternative-bg-color) 45%, transparent);
+    }
+}
+
+.secondaryButton {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: $spacing-sm $spacing-md;
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: $border-radius;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+        background-color: var(--sidebar-bg);
+        border-color: var(--color-border-secondary);
+    }
+}
+
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+    margin-bottom: $spacing-lg;
+    padding: $spacing-md;
+    background-color: var(--card-bg);
+    border-radius: $border-radius;
+    border: 1px solid var(--border-color);
+    width: 100%;
+    box-sizing: border-box;
+
+    @media (max-width: $breakpoint-md) {
+        flex-direction: column;
+        gap: $spacing-sm;
+    }
+}
+
+.searchBox {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    flex: 1;
+    min-width: 0;
+    padding: $spacing-sm $spacing-md;
+    background-color: var(--sidebar-bg);
+    border-radius: $border-radius;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+
+    @media (max-width: $breakpoint-md) {
+        width: 100%;
+    }
+
+    input {
+        flex: 1;
+        min-width: 0;
+        background: transparent;
+        border: none;
+        color: var(--text-color);
+        font-size: 0.9rem;
+        outline: none;
+
+        &::placeholder {
+            color: var(--text-color);
+            opacity: 0.5;
+        }
+    }
+}
+
+.filters {
+    display: flex;
+    gap: $spacing-sm;
+    align-items: center;
+    flex-wrap: wrap;
+
+    @media (max-width: $breakpoint-md) {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+.filterSelect {
+    padding: $spacing-sm $spacing-md;
+    background-color: var(--sidebar-bg);
+    border: 1px solid var(--border-color);
+    border-radius: $border-radius;
+    color: var(--text-color);
+    font-size: 0.85rem;
+    cursor: pointer;
+    min-width: 0;
+
+    @media (max-width: $breakpoint-md) {
+        width: 100%;
+    }
+}
+
+.sortButton {
+    padding: $spacing-sm;
+    background-color: var(--sidebar-bg);
+    border: 1px solid var(--border-color);
+    border-radius: $border-radius;
+    color: var(--text-color);
+    font-size: 1rem;
+    cursor: pointer;
+    min-width: 36px;
+
+    &:hover {
+        background-color: var(--border-color);
+    }
+}
+
+.viewOptions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    margin-left: auto;
+
+    @media (max-width: $breakpoint-md) {
+        margin-left: 0;
+        justify-content: space-between;
+        width: 100%;
+        flex-wrap: wrap;
+        gap: $spacing-sm;
+    }
+}
+
+.checkboxLabel {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    color: var(--text-color);
+    font-size: 0.85rem;
+    cursor: pointer;
+    white-space: nowrap;
+
+    @media (max-width: $breakpoint-md) {
+        font-size: 0.8rem;
+    }
+
+    input {
+        cursor: pointer;
+    }
+}
+
+.viewToggle {
+    display: flex;
+    border: 1px solid var(--border-color);
+    border-radius: $border-radius;
+    overflow: hidden;
+}
+
+.viewButton {
+    padding: $spacing-sm;
+    background-color: var(--sidebar-bg);
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        background-color: var(--border-color);
+    }
+
+    &.active {
+        background-color: var(--alternative-bg-color);
+        color: white;
+    }
+}
+
+.tableContainer {
+    background-color: var(--card-bg);
+    border-radius: $border-radius;
+    border: 1px solid var(--border-color);
+    overflow-x: auto;
+
+    @media (max-width: $breakpoint-md) {
+        display: none;
+    }
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+
+    th,
+    td {
+        padding: $spacing-md;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+        background-color: var(--sidebar-bg);
+        color: var(--text-color);
+        font-weight: 600;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    td {
+        color: var(--text-color);
+        font-size: 0.9rem;
+    }
+
+    tr:last-child td {
+        border-bottom: none;
+    }
+
+    tr:hover td {
+        background-color: var(--sidebar-bg);
+    }
+}
+
+.categoryModalContent {
+    padding: $spacing-lg;
+    width: 400px;
+    max-width: 95vw;
+
+    h2 {
+        color: var(--text-color);
+        font-size: 1.25rem;
+        margin: 0 0 $spacing-lg 0;
+    }
+}
+
+.mobileCards {
+    display: none;
+
+    @media (max-width: $breakpoint-md) {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-md;
+    }
+}
+
+.mobileCardsWrapper {
+    display: none;
+
+    @media (max-width: $breakpoint-md) {
+        display: block;
+    }
+}
+
+.mobileCard {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: $border-radius;
+    padding: $spacing-md;
+}
+
+.mobileCardHeader {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    margin-bottom: $spacing-md;
+    padding-bottom: $spacing-md;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.mobileCardInfo {
+    flex: 1;
+    min-width: 0;
+
+    h4 {
+        margin: 0 0 4px 0;
+        color: var(--text-color);
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    span {
+        color: var(--text-color);
+        opacity: 0.6;
+        font-size: 0.85rem;
+    }
+}
+
+.mobileCardBody {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-sm;
+    margin-bottom: $spacing-md;
+}
+
+.mobileCardField {
+    label {
+        display: block;
+        color: var(--text-color);
+        opacity: 0.6;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        margin-bottom: 2px;
+    }
+
+    span {
+        color: var(--text-color);
+        font-size: 0.9rem;
+    }
+}
+
+.mobileCardFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: $spacing-md;
+    border-top: 1px solid var(--border-color);
+}
+
+.desktopOnly {
+    @media (max-width: $breakpoint-md) {
+        display: none;
+    }
+}
+
+.productImage {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+    background-color: var(--sidebar-bg);
+}
+
+.productImagePlaceholder {
+    width: 40px;
+    height: 40px;
+    background-color: var(--sidebar-bg);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    opacity: 0.3;
+}
+
+.productImageFallbackInitial {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+.productImageStack {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.missingProductPhotoNotice {
+    margin: 0;
+    font-size: 0.65rem;
+    line-height: 1.1;
+    color: var(--text-color);
+    opacity: 0.65;
+    text-align: center;
+}
+
+.statusBadge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    &.active {
+        background-color: rgba($positive-color, 0.15);
+        color: $positive-color;
+    }
+
+    &.inactive {
+        background-color: rgba($negative-color, 0.15);
+        color: $negative-color;
+    }
+}
+
+.stockWarning {
+    color: $negative-color;
+    font-weight: 500;
+}
+
+.stockNormal {
+    color: var(--text-color);
+}
+
+.stockMedium {
+    color: var(--color-warning);
+    font-weight: 500;
+}
+
+.stockLow {
+    color: $negative-color;
+    font-weight: 600;
+}
+
+.groupedView {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+}
+
+.categoryGroup {
+    background-color: var(--card-bg);
+    border-radius: $border-radius;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.categoryGroupTitle {
+    padding: $spacing-md;
+    margin: 0;
+    background-color: var(--sidebar-bg);
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cardsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: $spacing-md;
+    padding: $spacing-md;
+
+    @media (max-width: $breakpoint-md) {
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
+}
+
+.productCard {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: $border-radius;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.productCardImage {
+    width: 100%;
+    height: 160px;
+    background-color: var(--sidebar-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .productImagePlaceholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .productImageFallbackInitial {
+        font-size: 2rem;
+    }
+}
+
+.productCardContent {
+    padding: $spacing-md;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+
+    h4 {
+        margin: 0;
+        color: var(--text-color);
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .sku {
+        margin: 0;
+        color: var(--text-color);
+        opacity: 0.6;
+        font-size: 0.8rem;
+    }
+
+    .categoryName {
+        margin: 0;
+        color: var(--text-color);
+        opacity: 0.7;
+        font-size: 0.85rem;
+    }
+
+    .price {
+        margin: 0;
+        color: var(--accent-color);
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+}
+
+.stockInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 0.8rem;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+.productCardActions {
+    padding: $spacing-md;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: $spacing-sm;
+    justify-content: flex-end;
+}
+
+.actions {
+    display: flex;
+    gap: $spacing-sm;
+}
+
+.actionButton {
+    padding: 6px;
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+        background-color: var(--sidebar-bg);
+    }
+
+    &.delete:hover {
+        border-color: $negative-color;
+        color: $negative-color;
+    }
+}
+
+.emptyState {
+    text-align: center;
+    padding: $spacing-lg * 2;
+    color: var(--text-color);
+    opacity: 0.6;
+}
+
+.modalContent {
+    padding: $spacing-lg;
+    width: 700px;
+    max-width: calc(95vw - #{$spacing-lg});
+    box-sizing: border-box;
+
+    @media (max-width: $breakpoint-md) {
+        width: calc(100vw - #{$spacing-lg * 2});
+        padding: $spacing-md;
+    }
+
+    h2 {
+        color: var(--text-color);
+        font-size: 1.25rem;
+        margin: 0 0 $spacing-lg 0;
+    }
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+}
+
+.formSection {
+    margin-bottom: $spacing-md;
+
+    h3 {
+        color: var(--text-color);
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0 0 $spacing-md 0;
+        padding-bottom: $spacing-sm;
+        border-bottom: 1px solid var(--border-color);
+    }
+}
+
+.formRow {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-md;
+    margin-bottom: $spacing-md;
+
+    @media (max-width: $breakpoint-md) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.formRow3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 120px;
+    gap: $spacing-md;
+
+    @media (max-width: $breakpoint-md) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    min-width: 0;
+
+    label {
+        color: var(--text-color);
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+
+    input,
+    select,
+    textarea {
+        padding: $spacing-md;
+        border: 1px solid var(--border-color);
+        border-radius: $border-radius;
+        font-size: 1rem;
+        background-color: var(--card-bg);
+        color: var(--text-color);
+        font-family: inherit;
+
+        &::placeholder {
+            color: var(--text-color);
+            opacity: 0.5;
+        }
+
+        &:focus {
+            outline: none;
+            border-color: var(--color-input-focus);
+        }
+
+        &:read-only {
+            background-color: var(--sidebar-bg);
+            cursor: not-allowed;
+        }
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+}
+
+.marginDisplay {
+    padding: $spacing-md;
+    border: 1px solid var(--border-color);
+    border-radius: $border-radius;
+    background-color: var(--sidebar-bg);
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 500;
+
+    &.positive {
+        color: $positive-color;
+    }
+
+    &.negative {
+        color: $negative-color;
+    }
+}
+
+.imageUpload {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+}
+
+.imagePreviewContainer {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.imagePreview {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: $border-radius;
+    border: 1px solid var(--border-color);
+}
+
+.imagePlaceholder {
+    width: 150px;
+    height: 150px;
+    border: 2px dashed var(--border-color);
+    border-radius: $border-radius;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-sm;
+    color: var(--text-color);
+    opacity: 0.5;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+        border-color: var(--color-input-focus);
+        opacity: 0.8;
+    }
+
+    span {
+        font-size: 0.8rem;
+    }
+}
+
+.imageInput {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.radioGroup {
+    display: flex;
+    gap: $spacing-md;
+}
+
+.radioLabel {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    cursor: pointer;
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+.inputError {
+    border-color: $negative-color !important;
+}
+
+.errorMessage {
+    color: $negative-color;
+    font-size: 0.8rem;
+}
+
+.formActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: $spacing-md;
+    margin-top: $spacing-md;
+    padding-top: $spacing-md;
+    padding-bottom: $spacing-md;
+    border-top: 1px solid var(--border-color);
+}
+
+.cancelButton {
+    padding: $spacing-sm $spacing-md;
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: $border-radius;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+        background-color: var(--sidebar-bg);
+    }
+}
+
+.submitButton {
+    padding: $spacing-sm $spacing-md;
+    background-color: var(--alternative-bg-color);
+    color: white;
+    border: none;
+    border-radius: $border-radius;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    &:hover {
+        opacity: 0.9;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: $spacing-lg * 2;
+    color: var(--text-color);
+    opacity: 0.6;
+}
+
+.price {
+    font-weight: 500;
+}
+
+@media (max-width: $breakpoint-lg) {
+    .table {
+        display: block;
+        overflow-x: auto;
+    }
+}

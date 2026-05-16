@@ -1,0 +1,97 @@
+
+/home/asksuite/Documents/my-catalog/app-backend/src/main.spec.ts
+  56:12  error  A method that is not declared with `this: void` may cause unintentional scoping of `this` when separated from its object.
+Consider using an arrow function or explicitly `.bind()`ing the method to avoid calling the method with an unintended `this` value. 
+If a function does not access `this`, it can be annotated with `this: void`  @typescript-eslint/unbound-method
+  95:12  error  A method that is not declared with `this: void` may cause unintentional scoping of `this` when separated from its object.
+Consider using an arrow function or explicitly `.bind()`ing the method to avoid calling the method with an unintended `this` value. 
+If a function does not access `this`, it can be annotated with `this: void`  @typescript-eslint/unbound-method
+  96:12  error  A method that is not declared with `this: void` may cause unintentional scoping of `this` when separated from its object.
+Consider using an arrow function or explicitly `.bind()`ing the method to avoid calling the method with an unintended `this` value. 
+If a function does not access `this`, it can be annotated with `this: void`  @typescript-eslint/unbound-method
+
+/home/asksuite/Documents/my-catalog/app-backend/src/modules/addresses/repositories/prisma/prisma.address.repository.spec.ts
+  4:10  error  'PrismaClient' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/asksuite/Documents/my-catalog/app-backend/src/modules/sessions/controllers/auth.controller.file-upload.spec.ts
+  119:11  error  Unsafe assignment of an `any` value  @typescript-eslint/no-unsafe-assignment
+
+/home/asksuite/Documents/my-catalog/app-backend/src/modules/sessions/controllers/auth.controller.spec.ts
+   60:48  warning  Unsafe argument of type `any` assigned to a parameter of type `RegisterDto`                                              @typescript-eslint/no-unsafe-argument
+   75:48  warning  Unsafe argument of type `any` assigned to a parameter of type `RegisterDto`                                              @typescript-eslint/no-unsafe-argument
+   87:13  error    Unsafe assignment of an `any` value                                                                                      @typescript-eslint/no-unsafe-assignment
+   89:33  warning  Unsafe argument of type `any` assigned to a parameter of type `RegisterDto`                                              @typescript-eslint/no-unsafe-argument
+  101:13  error    Unsafe assignment of an `any` value                                                                                      @typescript-eslint/no-unsafe-assignment
+  107:48  warning  Unsafe argument of type `any` assigned to a parameter of type `RegisterDto`                                              @typescript-eslint/no-unsafe-argument
+  113:13  error    Unsafe member access .email on an `any` value                                                                            @typescript-eslint/no-unsafe-member-access
+  114:13  error    Unsafe member access .password on an `any` value                                                                         @typescript-eslint/no-unsafe-member-access
+  121:13  error    Unsafe assignment of an `any` value                                                                                      @typescript-eslint/no-unsafe-assignment
+  127:33  warning  Unsafe argument of type `any` assigned to a parameter of type `RegisterDto`                                              @typescript-eslint/no-unsafe-argument
+  157:44  warning  Unsafe argument of type `any` assigned to a parameter of type `string`                                                   @typescript-eslint/no-unsafe-argument
+  181:38  warning  Unsafe argument of type `any` assigned to a parameter of type `string`                                                   @typescript-eslint/no-unsafe-argument
+  201:45  warning  Unsafe argument of type `any` assigned to a parameter of type `{ user: { userId: string; }; }`                           @typescript-eslint/no-unsafe-argument
+  215:45  warning  Unsafe argument of type `any` assigned to a parameter of type `{ user: { userId: string; }; }`                           @typescript-eslint/no-unsafe-argument
+  223:37  warning  Unsafe argument of type `any` assigned to a parameter of type `{ user: { userId: string; }; }`                           @typescript-eslint/no-unsafe-argument
+  254:13  error    Unsafe assignment of an `any` value                                                                                      @typescript-eslint/no-unsafe-assignment
+  258:43  warning  Unsafe argument of type `any` assigned to a parameter of type `{ user: { email: string; name: string; id: string; }; }`  @typescript-eslint/no-unsafe-argument
+  258:48  warning  Unsafe argument of type `any` assigned to a parameter of type `Response<any, Record<string, any>>`                       @typescript-eslint/no-unsafe-argument
+  285:13  error    Unsafe assignment of an `any` value                                                                                      @typescript-eslint/no-unsafe-assignment
+  289:43  warning  Unsafe argument of type `any` assigned to a parameter of type `{ user: { email: string; name: string; id: string; }; }`  @typescript-eslint/no-unsafe-argument
+  289:48  warning  Unsafe argument of type `any` assigned to a parameter of type `Response<any, Record<string, any>>`                       @typescript-eslint/no-unsafe-argument
+  301:13  error    Unsafe assignment of an `any` value                                                                                      @typescript-eslint/no-unsafe-assignment
+  304:39  warning  Unsafe argument of type `any` assigned to a parameter of type `{ user: { email: string; name: string; id: string; }; }`  @typescript-eslint/no-unsafe-argument
+  304:44  warning  Unsafe argument of type `any` assigned to a parameter of type `Response<any, Record<string, any>>`                       @typescript-eslint/no-unsafe-argument
+  318:13  error    Unsafe assignment of an `any` value                                                                                      @typescript-eslint/no-unsafe-assignment
+  322:43  warning  Unsafe argument of type `any` assigned to a parameter of type `{ user: { email: string; name: string; id: string; }; }`  @typescript-eslint/no-unsafe-argument
+  322:48  warning  Unsafe argument of type `any` assigned to a parameter of type `Response<any, Record<string, any>>`                       @typescript-eslint/no-unsafe-argument
+  344:13  error    Unsafe assignment of an `any` value                                                                                      @typescript-eslint/no-unsafe-assignment
+  348:43  warning  Unsafe argument of type `any` assigned to a parameter of type `{ user: { email: string; name: string; id: string; }; }`  @typescript-eslint/no-unsafe-argument
+  348:48  warning  Unsafe argument of type `any` assigned to a parameter of type `Response<any, Record<string, any>>`                       @typescript-eslint/no-unsafe-argument
+
+/home/asksuite/Documents/my-catalog/app-backend/src/modules/sessions/controllers/auth.controller.ts
+  147:14  error  'error' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/asksuite/Documents/my-catalog/app-backend/src/modules/sessions/controllers/auth.integration.spec.ts
+   90:21  warning  Unsafe argument of type `any` assigned to a parameter of type `App`  @typescript-eslint/no-unsafe-argument
+  100:21  warning  Unsafe argument of type `any` assigned to a parameter of type `App`  @typescript-eslint/no-unsafe-argument
+  111:21  warning  Unsafe argument of type `any` assigned to a parameter of type `App`  @typescript-eslint/no-unsafe-argument
+  122:21  warning  Unsafe argument of type `any` assigned to a parameter of type `App`  @typescript-eslint/no-unsafe-argument
+  130:21  warning  Unsafe argument of type `any` assigned to a parameter of type `App`  @typescript-eslint/no-unsafe-argument
+  140:21  warning  Unsafe argument of type `any` assigned to a parameter of type `App`  @typescript-eslint/no-unsafe-argument
+  152:21  warning  Unsafe argument of type `any` assigned to a parameter of type `App`  @typescript-eslint/no-unsafe-argument
+  161:21  warning  Unsafe argument of type `any` assigned to a parameter of type `App`  @typescript-eslint/no-unsafe-argument
+  178:38  warning  Unsafe argument of type `any` assigned to a parameter of type `App`  @typescript-eslint/no-unsafe-argument
+
+/home/asksuite/Documents/my-catalog/app-backend/src/modules/sessions/services/sessions.service.spec.ts
+  41:7  warning  Unsafe argument of type `any` assigned to a parameter of type `IAuthTokenRepository`     @typescript-eslint/no-unsafe-argument
+  42:7  warning  Unsafe argument of type `any` assigned to a parameter of type `IAuthProviderRepository`  @typescript-eslint/no-unsafe-argument
+
+/home/asksuite/Documents/my-catalog/app-backend/src/modules/sessions/strategies/google.strategy.spec.ts
+  18:35  warning  Unsafe argument of type `any` assigned to a parameter of type `GoogleAuthUseCase`  @typescript-eslint/no-unsafe-argument
+
+/home/asksuite/Documents/my-catalog/app-backend/src/modules/sessions/strategies/local.strategy.spec.ts
+  10:34  warning  Unsafe argument of type `any` assigned to a parameter of type `ValidateUserUseCase`  @typescript-eslint/no-unsafe-argument
+
+/home/asksuite/Documents/my-catalog/app-backend/src/modules/sessions/use-cases/google-auth.usecase.spec.ts
+  33:7  warning  Unsafe argument of type `any` assigned to a parameter of type `UsersService`     @typescript-eslint/no-unsafe-argument
+  34:7  warning  Unsafe argument of type `any` assigned to a parameter of type `SessionsService`  @typescript-eslint/no-unsafe-argument
+
+/home/asksuite/Documents/my-catalog/app-backend/src/modules/sessions/use-cases/login-user.usecase.spec.ts
+  22:7  warning  Unsafe argument of type `any` assigned to a parameter of type `UsersService`           @typescript-eslint/no-unsafe-argument
+  23:7  warning  Unsafe argument of type `any` assigned to a parameter of type `LoginWithTokenUseCase`  @typescript-eslint/no-unsafe-argument
+
+/home/asksuite/Documents/my-catalog/app-backend/src/modules/sessions/use-cases/logout-user.usecase.spec.ts
+  12:37  warning  Unsafe argument of type `any` assigned to a parameter of type `SessionsService`  @typescript-eslint/no-unsafe-argument
+
+/home/asksuite/Documents/my-catalog/app-backend/src/modules/sessions/use-cases/validate-user.usecase.spec.ts
+  29:39  warning  Unsafe argument of type `any` assigned to a parameter of type `UsersService`  @typescript-eslint/no-unsafe-argument
+
+/home/asksuite/Documents/my-catalog/app-backend/src/modules/users/services/users.service.spec.ts
+  28:32  warning  Unsafe argument of type `any` assigned to a parameter of type `IUserRepository`  @typescript-eslint/no-unsafe-argument
+
+/home/asksuite/Documents/my-catalog/app-backend/src/shared/prisma/transaction.service.spec.ts
+  11:38  warning  Unsafe argument of type `any` assigned to a parameter of type `PrismaService`  @typescript-eslint/no-unsafe-argument
+  11:60  warning  Unsafe argument of type `any` assigned to a parameter of type `ClsService`     @typescript-eslint/no-unsafe-argument
+
+✖ 58 problems (16 errors, 42 warnings)
+

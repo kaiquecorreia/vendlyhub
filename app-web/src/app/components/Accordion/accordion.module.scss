@@ -1,0 +1,52 @@
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.enableBorderBottom {
+  border-bottom: solid 1rem var(--bg-color);
+}
+
+.accordionItem {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+}
+
+.header {
+  background: none;
+  border: none;
+  width: 100%;
+  padding: 1rem;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--text-color);
+  transition: background-color 0.3s ease;
+}
+
+.header:hover {
+  background-color: var(--alternative-bg-color);
+}
+
+.content {
+  background-color: var(--bg-color);
+  transition: background-color 0.3s ease;
+}
+
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--text-color);
+}
+
+.content td {
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--alternative-bg-color);
+}

@@ -1,0 +1,232 @@
+@use '../styles/variables' as *;
+
+.loginContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: $spacing-md;
+    background-color: var(--bg-color);
+}
+
+.loginBox {
+    background: var(--card-bg);
+    padding: $spacing-lg;
+    border-radius: $border-radius;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid var(--border-color);
+}
+
+.logoContainer {
+    text-align: center;
+    margin-bottom: $spacing-lg;
+}
+
+.googleButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-sm;
+    width: 100%;
+    padding: $spacing-md;
+    border: 1px solid var(--border-color);
+    border-radius: $border-radius;
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: var(--sidebar-bg);
+    }
+}
+
+.divider {
+    margin: $spacing-lg 0;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--text-color);
+
+    &::before,
+    &::after {
+        content: '';
+        flex: 1;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    span {
+        padding: 0 $spacing-md;
+    }
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+
+    label {
+        color: var(--text-color);
+        font-weight: 500;
+    }
+
+    input {
+        padding: $spacing-md;
+        border: 1px solid var(--border-color);
+        border-radius: $border-radius;
+        font-size: 1rem;
+        background-color: var(--card-bg);
+        color: var(--text-color);
+
+        &::placeholder {
+            color: var(--text-color);
+            opacity: 0.6;
+        }
+
+        &:focus {
+            outline: none;
+            border-color: var(--color-input-focus);
+        }
+    }
+
+    .inputError {
+        border-color: var(--color-error);
+
+        &:focus {
+            border-color: var(--color-error);
+            box-shadow: 0 0 0 1px var(--color-error);
+        }
+    }
+
+    .errorMessage {
+        color: var(--color-error);
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+}
+
+.forgotPassword {
+    color: var(--accent-color);
+    text-decoration: none;
+    text-align: right;
+    font-size: 0.9rem;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.loginButton {
+    background-color: var(--color-brand-primary);
+    color: var(--color-text-inverse);
+    padding: $spacing-md;
+    border: none;
+    border-radius: $border-radius;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: var(--color-brand-primary-hover);
+        color: var(--color-text-inverse);
+    }
+}
+
+.signupText {
+    margin-top: $spacing-lg;
+    text-align: center;
+    color: var(--text-color);
+
+    a {
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: 500;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.error {
+    background-color: color-mix(in srgb, var(--color-error) 12%, transparent);
+    border: 1px solid var(--color-error);
+    color: var(--color-error);
+    padding: $spacing-md;
+    border-radius: $border-radius;
+    margin-bottom: $spacing-md;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.devSection {
+    margin-top: $spacing-lg;
+    padding-top: $spacing-md;
+    border-top: 1px dashed var(--border-color);
+}
+
+.devDivider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--color-warning);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: $spacing-md;
+
+    &::before,
+    &::after {
+        content: '';
+        flex: 1;
+        border-bottom: 1px dashed var(--color-warning);
+    }
+
+    span {
+        padding: 0 $spacing-sm;
+    }
+}
+
+.fakeDataButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-sm;
+    width: 100%;
+    padding: $spacing-md;
+    border: 2px dashed var(--color-warning);
+    border-radius: $border-radius;
+    background: color-mix(in srgb, var(--color-warning) 14%, transparent);
+    color: var(--color-warning);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover:not(:disabled) {
+        background: color-mix(in srgb, var(--color-warning) 24%, transparent);
+        border-color: color-mix(in srgb, var(--color-warning) 75%, black);
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}
+
+.devNote {
+    margin-top: $spacing-sm;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-color);
+    opacity: 0.7;
+}

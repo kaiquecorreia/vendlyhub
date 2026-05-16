@@ -1,0 +1,471 @@
+@use '../styles/variables' as *;
+
+.page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-color);
+  padding: $spacing-md;
+  width: 100%;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: $border-radius;
+  padding: calc(#{$spacing-lg} + 96px + #{$spacing-md}) $spacing-lg $spacing-lg;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logoWrap {
+  text-align: center;
+  margin-bottom: $spacing-md;
+}
+
+.logoWrapWelcome {
+  max-width: 160px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.progressWrap {
+  margin-bottom: $spacing-md;
+}
+
+.progressHead {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+  color: var(--text-color);
+  font-size: 0.85rem;
+}
+
+.progressTrack {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--sidebar-bg);
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  background: var(--color-brand-primary);
+  transition: width 0.25s ease;
+}
+
+.globalError {
+  color: var(--color-error);
+  font-size: 0.9rem;
+  margin-bottom: $spacing-sm;
+  text-align: center;
+}
+
+.step {
+  min-height: 260px;
+  animation: fadeIn 0.2s ease;
+}
+
+.assistantGuide {
+  position: absolute;
+  top: $spacing-lg;
+  left: $spacing-lg;
+  right: $spacing-lg;
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-sm;
+}
+
+.mascotVideoWrap {
+  width: 72px;
+  height: 96px;
+  border-radius: 0;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.mascotVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+.mascotVideoFallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  background: var(--sidebar-bg);
+  color: var(--text-color);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.mascotBubble {
+  position: relative;
+  margin-top: 6px;
+  max-width: 360px;
+  background: var(--card-bg);
+  color: var(--text-color);
+  border: 2px solid var(--text-color);
+  border-radius: 14px;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.25);
+}
+
+.mascotBubble::before {
+  content: '';
+  position: absolute;
+  left: -9px;
+  top: 14px;
+  width: 14px;
+  height: 14px;
+  background: var(--card-bg);
+  border-left: 2px solid var(--text-color);
+  border-bottom: 2px solid var(--text-color);
+  transform: rotate(45deg);
+}
+
+.stepContent {
+  h2 {
+    margin: 0 0 $spacing-sm;
+    color: var(--text-color);
+    font-size: 1.2rem;
+  }
+}
+
+.centerContent {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+  gap: $spacing-sm;
+
+  h1 {
+    color: var(--text-color);
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  p {
+    color: var(--text-color);
+    opacity: 0.75;
+    margin: 0 0 $spacing-md;
+  }
+}
+
+@media (max-width: 600px) {
+  .page {
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow: hidden;
+    padding: $spacing-sm;
+  }
+
+  .card {
+    max-height: calc(100vh - (2 * #{$spacing-sm}));
+    max-height: calc(100dvh - (2 * #{$spacing-sm}));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: calc(#{$spacing-md} + 74px + #{$spacing-md}) $spacing-md $spacing-md;
+  }
+
+  .assistantGuide {
+    top: $spacing-md;
+    left: $spacing-md;
+    right: $spacing-md;
+    gap: 0.45rem;
+  }
+
+  .mascotVideoWrap {
+    width: 64px;
+    height: 64px;
+  }
+
+  .mascotBubble {
+    margin-top: 4px;
+    max-width: none;
+    font-size: 0.78rem;
+    padding: 0.45rem 0.6rem;
+  }
+
+  .mascotBubble::before {
+    top: 10px;
+  }
+}
+
+.subtitle {
+  margin: 0 0 $spacing-md;
+  color: var(--text-color);
+  opacity: 0.75;
+  font-size: 0.9rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: $spacing-sm;
+
+  input {
+    width: 100%;
+    padding: $spacing-md;
+    border: 1px solid var(--border-color);
+    border-radius: $border-radius;
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-size: 1rem;
+
+    &::placeholder {
+      color: var(--text-color);
+      opacity: 0.6;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-input-focus);
+    }
+  }
+
+  span {
+    color: var(--color-error);
+    font-size: 0.85rem;
+  }
+}
+
+.inputError {
+  border-color: var(--color-error) !important;
+}
+
+.readonlyField {
+  background: var(--sidebar-bg) !important;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.radioRow {
+  display: flex;
+  gap: $spacing-lg;
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    color: var(--text-color);
+    cursor: pointer;
+  }
+
+  input[type='radio'] {
+    accent-color: var(--color-brand-primary);
+  }
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $spacing-sm;
+  max-height: 280px;
+  overflow: auto;
+  padding-right: 0.15rem;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.typeCard {
+  padding: $spacing-md;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  border-radius: $border-radius;
+  color: var(--text-color);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+
+  &:hover {
+    border-color: var(--color-input-focus);
+  }
+}
+
+.typeCardSelected {
+  border-color: var(--color-brand-primary);
+  background: var(--sidebar-bg);
+}
+
+.inlineError {
+  display: block;
+  color: var(--color-error);
+  font-size: 0.85rem;
+  margin-top: 0.4rem;
+}
+
+.logoUploadContainer {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.logoPlaceholder,
+.logoPreview {
+  width: 120px;
+  height: 120px;
+  border-radius: $border-radius;
+}
+
+.logoPlaceholder {
+  border: 2px dashed var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  opacity: 0.8;
+  font-size: 0.85rem;
+  text-align: center;
+  padding: $spacing-sm;
+}
+
+.logoPreview {
+  object-fit: cover;
+  border: 2px solid var(--border-color);
+}
+
+.fileInput {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.row {
+  display: flex;
+  gap: $spacing-sm;
+
+  > * {
+    flex: 1;
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin-top: $spacing-md;
+}
+
+.primaryButton,
+.backButton,
+.skipButton {
+  border: none;
+  border-radius: $border-radius;
+  padding: 0.7rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primaryButton {
+  background: var(--color-brand-primary);
+  color: var(--color-text-inverse);
+  margin-left: auto;
+
+  &:hover {
+    background: var(--color-brand-primary-hover);
+  }
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+}
+
+.welcomeButton {
+  background: var(--color-brand-primary);
+  color: var(--color-text-inverse);
+  border: none;
+  border-radius: $border-radius;
+  padding: 0.9rem 2.2rem;
+  min-width: 220px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: $spacing-sm auto 0;
+
+  &:hover {
+    background: var(--color-brand-primary-hover);
+  }
+}
+
+.backButton {
+  background: var(--sidebar-bg);
+  color: var(--text-color);
+}
+
+.skipButton {
+  background: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.footerText {
+  margin-top: $spacing-md;
+  text-align: center;
+  color: var(--text-color);
+  font-size: 0.95rem;
+
+  a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.successTimeoutTrack {
+  width: 100%;
+  max-width: 320px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--sidebar-bg);
+  overflow: hidden;
+  margin-top: $spacing-sm;
+}
+
+.successTimeoutBar {
+  height: 100%;
+  background: var(--color-brand-primary);
+  transition: width 1s linear;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

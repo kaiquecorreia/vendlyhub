@@ -1,0 +1,308 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  userId        String    @id @default(uuid()) @map("user_id")
+  email         String    @unique
+  passwordHash  String    @map("password_hash")
+  name          String?
+  avatar        String?
+  isActive      Boolean   @default(true) @map("is_active")
+  lastLoginAt   DateTime? @map("last_login_at")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  authProviders       AuthProvider[]
+  authTokens          AuthToken[]
+  passwordResetTokens PasswordResetToken[]
+  userEstablishments  UserEstablishment[]
+  contacts            Contact[]
+
+  @@map("user")
+}
+
+model AuthProvider {
+  authProviderId String           @id @default(uuid()) @map("auth_provider_id")
+  userId         String           @map("user_id")
+  provider       AuthProviderType
+  providerId     String           @map("provider_id")
+  createdAt      DateTime         @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [userId], onDelete: Cascade)
+
+  @@unique([provider, providerId])
+  @@unique([userId, provider])
+  @@map("auth_provider")
+}
+
+model Establishment {
+  establishmentId   String   @id @default(uuid()) @map("establishment_id")
+  name              String
+  document          String?   @unique
+  documentType      DocumentType? @map("document_type")
+  onboardingStatus  OnboardingStatus @default(draft) @map("onboarding_status")
+  pixCopyPaste      String?  @map("pix_copy_paste")
+  logo              String?
+  addressId         String   @map("address_id")
+  isActive          Boolean  @default(true) @map("is_active")
+  deletedAt         DateTime? @map("deleted_at")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  address            Address           @relation(fields: [addressId], references: [addressId])
+  userEstablishments UserEstablishment[]
+  contacts           Contact[]
+  categories         Category[]
+  products           Product[]
+  orders             Order[]
+  establishmentEstablishmentTypes EstablishmentEstablishmentType[]
+
+  @@map("establishment")
+}
+
+model EstablishmentType {
+  establishmentTypeId String @id @default(uuid()) @map("establishment_type_id")
+  name                  String @unique
+
+  establishmentEstablishmentTypes EstablishmentEstablishmentType[]
+
+  @@map("establishment_type")
+}
+
+model EstablishmentEstablishmentType {
+  establishmentId     String @map("establishment_id")
+  establishmentTypeId   String @map("establishment_type_id")
+
+  establishment   Establishment   @relation(fields: [establishmentId], references: [establishmentId], onDelete: Cascade)
+  establishmentType EstablishmentType @relation(fields: [establishmentTypeId], references: [establishmentTypeId], onDelete: Cascade)
+
+  @@id([establishmentId, establishmentTypeId])
+  @@map("establishment_establishment_type")
+}
+
+model Address {
+  addressId    String  @id @default(uuid()) @map("address_id")
+  cep          String?
+  street       String?
+  number       String?
+  complement   String?
+  neighborhood String?
+  city         String?
+  state        String?
+
+  establishments Establishment[]
+
+  @@map("address")
+}
+
+model Contact {
+  contactId       String      @id @default(uuid()) @map("contact_id")
+  ownerType       OwnerType   @map("owner_type")
+  ownerId         String      @map("owner_id")
+  contactType     ContactType @map("contact_type")
+  value           String
+  label           String?
+  isPrimary       Boolean     @default(false) @map("is_primary")
+  userId          String?     @map("user_id")
+  establishmentId String?     @map("establishment_id")
+  createdAt       DateTime    @default(now()) @map("created_at")
+  updatedAt       DateTime    @updatedAt @map("updated_at")
+
+  user          User?          @relation(fields: [userId], references: [userId], onDelete: Cascade)
+  establishment Establishment? @relation(fields: [establishmentId], references: [establishmentId], onDelete: Cascade)
+
+  @@index([ownerId, ownerType])
+  @@map("contact")
+}
+
+model UserEstablishment {
+  userId          String @map("user_id")
+  establishmentId String @map("establishment_id")
+  role            UserRole
+  loginWhatsapp   String? @unique @map("login_whatsapp")
+  minimalProfileCompleted Boolean @default(true) @map("minimal_profile_completed")
+
+  user          User          @relation(fields: [userId], references: [userId], onDelete: Cascade)
+  establishment Establishment @relation(fields: [establishmentId], references: [establishmentId], onDelete: Cascade)
+
+  @@id([userId, establishmentId])
+  @@map("user_establishment")
+}
+
+model AuthToken {
+  authTokenId      String    @id @default(uuid()) @map("auth_token_id")
+  userId           String    @map("user_id")
+  refreshTokenHash String    @map("refresh_token_hash")
+  expiresAt        DateTime  @map("expires_at")
+  revokedAt        DateTime? @map("revoked_at")
+  device           String?
+  ip               String?
+  createdAt        DateTime  @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [userId], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("auth_token")
+}
+
+model PasswordResetToken {
+  passwordResetTokenId String    @id @default(uuid()) @map("password_reset_token_id")
+  userId               String    @map("user_id")
+  resetTokenHash       String    @map("reset_token_hash")
+  expiresAt            DateTime  @map("expires_at")
+  usedAt               DateTime? @map("used_at")
+  createdAt            DateTime  @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [userId], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("password_reset_token")
+}
+
+model Category {
+  categoryId       String         @id @default(uuid()) @map("category_id")
+  establishmentId  String         @map("establishment_id")
+  name             String
+  description      String?
+  status           CategoryStatus @default(active)
+  createdAt        DateTime       @default(now()) @map("created_at")
+  updatedAt        DateTime       @updatedAt @map("updated_at")
+  deletedAt        DateTime?      @map("deleted_at")
+
+  establishment Establishment @relation(fields: [establishmentId], references: [establishmentId], onDelete: Cascade)
+  products      Product[]
+
+  @@unique([establishmentId, name])
+  @@index([establishmentId, status])
+  @@map("category")
+}
+
+model Product {
+  productId        String        @id @default(uuid()) @map("product_id")
+  establishmentId  String        @map("establishment_id")
+  categoryId       String        @map("category_id")
+  name             String
+  sku              String
+  brand            String
+  model            String
+  description      String
+  salePrice        Decimal       @map("sale_price") @db.Decimal(10, 2)
+  discount         Decimal       @default(0) @db.Decimal(10, 2)
+  cost             Decimal       @db.Decimal(10, 2)
+  margin           Decimal       @default(0) @db.Decimal(10, 2)
+  unit             String
+  stockQuantity    Int           @map("stock_quantity")
+  reservedStock    Int           @default(0) @map("reserved_stock")
+  soldQuantity     Int           @default(0) @map("sold_quantity")
+  minStock         Int           @map("min_stock")
+  supplier         String
+  supplierCode     String?       @map("supplier_code")
+  ean              String?
+  status           ProductStatus @default(active)
+  imageUrl         String?       @map("image_url")
+  createdAt        DateTime      @default(now()) @map("created_at")
+  updatedAt        DateTime      @updatedAt @map("updated_at")
+  deletedAt        DateTime?     @map("deleted_at")
+
+  establishment Establishment @relation(fields: [establishmentId], references: [establishmentId], onDelete: Cascade)
+  category      Category      @relation(fields: [categoryId], references: [categoryId], onDelete: Restrict)
+  orderItems    OrderItem[]
+
+  @@unique([establishmentId, sku])
+  @@index([establishmentId, categoryId, status])
+  @@map("product")
+}
+
+model Order {
+  orderId          String      @id @default(uuid()) @map("order_id")
+  establishmentId  String      @map("establishment_id")
+  orderNumber      String      @unique @map("order_number")
+  status           OrderStatus @default(pending)
+  customerName     String      @map("customer_name")
+  customerWhatsapp String      @map("customer_whatsapp")
+  customerAddress  String      @map("customer_address")
+  notes            String?
+  totalAmount      Decimal     @map("total_amount") @db.Decimal(10, 2)
+  createdAt        DateTime    @default(now()) @map("created_at")
+  updatedAt        DateTime    @updatedAt @map("updated_at")
+
+  establishment Establishment @relation(fields: [establishmentId], references: [establishmentId], onDelete: Cascade)
+  items         OrderItem[]
+
+  @@index([establishmentId, createdAt])
+  @@map("order")
+}
+
+model OrderItem {
+  orderItemId String  @id @default(uuid()) @map("order_item_id")
+  orderId     String  @map("order_id")
+  productId   String  @map("product_id")
+  quantity    Int
+  unitPrice   Decimal @map("unit_price") @db.Decimal(10, 2)
+  discount    Decimal @default(0) @db.Decimal(10, 2)
+  lineTotal   Decimal @map("line_total") @db.Decimal(10, 2)
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  order   Order   @relation(fields: [orderId], references: [orderId], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [productId], onDelete: Restrict)
+
+  @@index([orderId])
+  @@index([productId])
+  @@map("order_item")
+}
+
+enum AuthProviderType {
+  google
+  email
+  apple
+}
+
+enum DocumentType {
+  cpf
+  cnpj
+}
+
+enum OwnerType {
+  user
+  establishment
+}
+
+enum ContactType {
+  phone_number
+  mobile_number
+  email
+}
+
+enum UserRole {
+  owner
+  admin
+  staff
+}
+
+enum CategoryStatus {
+  active
+  inactive
+}
+
+enum ProductStatus {
+  active
+  inactive
+}
+
+enum OrderStatus {
+  pending
+  confirmed
+  cancelled
+}
+
+enum OnboardingStatus {
+  draft
+  minimal_completed
+  completed
+}

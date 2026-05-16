@@ -1,0 +1,9 @@
+@mixin center-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin transition($props...) {
+  transition: $props 0.3s ease;
+}

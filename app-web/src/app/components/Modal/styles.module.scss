@@ -1,0 +1,30 @@
+@use '../../styles/variables' as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 9999;
+  padding: $spacing-md;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  @media (max-width: 768px) {
+    padding: $spacing-sm;
+  }
+}
+
+.modal {
+  background: var(--card-bg);
+  border-radius: $border-radius;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: $spacing-lg 0;
+
+  @media (max-width: 768px) {
+    max-width: calc(100vw - #{$spacing-sm * 2});
+    margin: $spacing-md 0;
+  }
+}

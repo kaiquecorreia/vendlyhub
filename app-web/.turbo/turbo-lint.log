@@ -1,0 +1,50 @@
+
+[43m[30m WARN [39m[49m Unsupported engine: wanted: {"node":">=22.14.0"} (current: {"node":"v20.20.0","pnpm":"10.27.0"})
+
+> vendlyhub-web@0.1.0 lint /home/asksuite/Documents/vendlyhub-project/vendlyhub/app-web
+> next lint
+
+
+[36m./src/app/catalog/[slug]/components/CatalogHeader.tsx[39m
+[33m44[39m:[33m5[39m  [33m[1mWarning[22m[39m: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  [90m[1m@next/next/no-img-element[22m[39m
+
+[36m./src/app/catalog/[slug]/components/ProductCard.tsx[39m
+[33m78[39m:[33m11[39m  [33m[1mWarning[22m[39m: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  [90m[1m@next/next/no-img-element[22m[39m
+
+[36m./src/app/catalog/preview/PreviewProductModal.tsx[39m
+[33m180[39m:[33m15[39m  [33m[1mWarning[22m[39m: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  [90m[1m@next/next/no-img-element[22m[39m
+
+[36m./src/app/components/FinanceTable/index.tsx[39m
+[33m157[39m:[33m17[39m  [33m[1mWarning[22m[39m: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  [90m[1m@next/next/no-img-element[22m[39m
+
+[36m./src/app/components/OnboardingMascotVideo.tsx[39m
+[33m15[39m:[33m9[39m  [33m[1mWarning[22m[39m: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  [90m[1m@next/next/no-img-element[22m[39m
+
+[36m./src/app/components/Topbar/index.tsx[39m
+[33m61[39m:[33m15[39m  [33m[1mWarning[22m[39m: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  [90m[1m@next/next/no-img-element[22m[39m
+
+[36m./src/app/establishment/page.tsx[39m
+[33m220[39m:[33m15[39m  [33m[1mWarning[22m[39m: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  [90m[1m@next/next/no-img-element[22m[39m
+
+[36m./src/app/fast-onboarding/page.tsx[39m
+[33m222[39m:[33m6[39m  [33m[1mWarning[22m[39m: React Hook useEffect has a missing dependency: 'isCoarsePointer'. Either include it or remove the dependency array.  [90m[1mreact-hooks/exhaustive-deps[22m[39m
+[33m356[39m:[33m19[39m  [33m[1mWarning[22m[39m: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  [90m[1m@next/next/no-img-element[22m[39m
+
+[36m./src/app/onboarding-flow/page.tsx[39m
+[33m520[39m:[33m19[39m  [33m[1mWarning[22m[39m: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  [90m[1m@next/next/no-img-element[22m[39m
+
+[36m./src/app/products/page.tsx[39m
+[33m545[39m:[33m33[39m  [33m[1mWarning[22m[39m: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  [90m[1m@next/next/no-img-element[22m[39m
+[33m612[39m:[33m27[39m  [33m[1mWarning[22m[39m: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  [90m[1m@next/next/no-img-element[22m[39m
+[33m692[39m:[33m27[39m  [33m[1mWarning[22m[39m: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  [90m[1m@next/next/no-img-element[22m[39m
+[33m758[39m:[33m23[39m  [33m[1mWarning[22m[39m: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  [90m[1m@next/next/no-img-element[22m[39m
+[33m836[39m:[33m19[39m  [33m[1mWarning[22m[39m: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  [90m[1m@next/next/no-img-element[22m[39m
+[33m900[39m:[33m21[39m  [33m[1mWarning[22m[39m: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  [90m[1m@next/next/no-img-element[22m[39m
+
+[36m./src/app/profile/page.tsx[39m
+[33m105[39m:[33m13[39m  [33m[1mWarning[22m[39m: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  [90m[1m@next/next/no-img-element[22m[39m
+
+[36m./src/app/register/page.tsx[39m
+[33m264[39m:[33m17[39m  [33m[1mWarning[22m[39m: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  [90m[1m@next/next/no-img-element[22m[39m
+
+[36minfo[39m  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules

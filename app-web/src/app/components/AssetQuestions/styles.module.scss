@@ -1,0 +1,180 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+    min-height: 400px;
+    width: 100%;
+    padding: $spacing-md;
+
+    .errorMessage {
+        color: var(--color-error);
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+
+    .inputGroup {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        flex: 1;
+    }
+}
+
+.addGroupSection {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    width: 100%;
+}
+
+.questionGroup {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    padding: $spacing-md;
+    border: 1px solid var(--border-color);
+    border-radius: $border-radius;
+    background-color: var(--alternative-bg-color);
+}
+
+.groupHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: $spacing-md;
+    border-bottom: 1px solid var(--border-color);
+
+    h3 {
+        color: var(--text-color);
+        margin: 0;
+    }
+}
+
+.questions {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+}
+
+.questionItem {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    padding: $spacing-md;
+    background-color: var(--card-bg);
+    border-radius: $border-radius;
+
+    .questionText {
+        flex: 1;
+        color: var(--text-color);
+    }
+
+    .questionWeight {
+        color: var(--accent-color);
+        font-weight: 500;
+    }
+}
+
+.addQuestionForm {
+    display: flex;
+    gap: $spacing-md;
+    align-items: center;
+
+    .questionInput {
+        flex: 1;
+    }
+
+    .weightInput {
+        width: 100px;
+    }
+}
+
+.questionInput,
+.weightInput {
+    padding: $spacing-sm $spacing-md;
+    border: 1px solid var(--border-color);
+    border-radius: $border-radius;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    font-size: 1rem;
+
+    &:focus {
+        outline: none;
+        border-color: var(--accent-color);
+    }
+
+    &::placeholder {
+        color: var(--text-color);
+        opacity: 0.5;
+    }
+}
+
+.buttonContainer {
+    display: flex;
+    gap: $spacing-md;
+    margin-top: $spacing-md;
+
+    button {
+        flex: 1;
+    }
+}
+
+.addButton {
+    @include center-flex;
+    gap: $spacing-sm;
+    padding: $spacing-sm $spacing-md;
+    border: 1px solid var(--border-color);
+    border-radius: $border-radius;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    @include transition(border-color, background-color, opacity);
+
+    &:hover:not(:disabled) {
+        border-color: var(--accent-color);
+        background-color: var(--accent-color);
+        color: var(--text-color-reverse);
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    svg {
+        color: var(--accent-color);
+    }
+
+    &:hover:not(:disabled) svg {
+        color: var(--text-color-reverse);
+    }
+}
+
+.saveButton {
+    @extend .addButton;
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--text-color-reverse);
+
+    svg {
+        color: var(--text-color-reverse);
+    }
+}
+
+.removeButton {
+    padding: $spacing-sm $spacing-md;
+    border: 1px solid var(--border-color);
+    border-radius: $border-radius;
+    background-color: transparent;
+    color: var(--negative-color);
+    cursor: pointer;
+    @include transition(border-color, background-color);
+
+    &:hover {
+        border-color: var(--negative-color);
+        background-color: rgba(var(--negative-color), 0.1);
+    }
+}

@@ -1,0 +1,9 @@
+
+> vendlyhub-web@0.1.0 build /home/asksuite/Documents/vendlyhub-project/vendlyhub/app-web
+> next build
+
+   ▲ Next.js 15.2.8
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+ ELIFECYCLE  Command failed.
