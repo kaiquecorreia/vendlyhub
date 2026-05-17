@@ -1,0 +1,158 @@
+{
+  "repository_type": "monorepo",
+  "tooling": "pnpm@10.27.0 + Turborepo 2.5",
+  "node_version": "24.13.0",
+  "parts": [
+    {
+      "part_id": "web",
+      "part_name": "Vendlyhub Web",
+      "project_type_id": "web",
+      "root_path": "app-web",
+      "package_name": "vendlyhub-web",
+      "framework": "Next.js 15.2.8 (App Router, Turbopack dev)",
+      "language": "TypeScript",
+      "ui_runtime": "React 19.0.0",
+      "entry_points": [
+        "app-web/src/app/layout.tsx",
+        "app-web/src/middleware.ts"
+      ],
+      "key_dependencies": {
+        "axios": "1.9.0",
+        "react-hook-form": "7.57.0",
+        "zod": "3.25.56",
+        "@hookform/resolvers": "5.0.1",
+        "next-themes": "0.4.6",
+        "lucide-react": "0.487.0",
+        "recharts": "2.15.2",
+        "sonner": "2.0.7",
+        "sass": "1.86.3",
+        "firebase": "11.9.0",
+        "qrcode.react": "4.2.0",
+        "canvas-confetti": "1.9.3",
+        "date-fns": "4.1.0"
+      },
+      "scripts": {
+        "dev": "next dev --turbopack",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+      },
+      "env_vars": [
+        "NEXT_PUBLIC_API_URL"
+      ]
+    },
+    {
+      "part_id": "backend",
+      "part_name": "Vendlyhub Backend",
+      "project_type_id": "backend",
+      "root_path": "app-backend",
+      "package_name": "vendlyhub-backend",
+      "framework": "NestJS 11 (Express 5 adapter)",
+      "language": "TypeScript",
+      "module_format": "commonjs",
+      "entry_points": [
+        "app-backend/src/main.ts",
+        "app-backend/src/app.module.ts"
+      ],
+      "key_dependencies": {
+        "@nestjs/common": "11",
+        "@nestjs/core": "11",
+        "@nestjs/jwt": "11",
+        "@nestjs/passport": "11",
+        "@nestjs/platform-express": "11",
+        "@nestjs/swagger": "11",
+        "@prisma/client": "7.3.0",
+        "@prisma/adapter-pg": "7.3.0",
+        "prisma": "7.3.0",
+        "bcrypt": "6",
+        "class-transformer": "0.5.1",
+        "class-validator": "0.14.3",
+        "express": "5.2.1",
+        "multer": "2.1.1",
+        "nodemailer": "8.0.4",
+        "passport-google-oauth20": "2",
+        "passport-jwt": "4",
+        "passport-local": "1",
+        "pg": "8",
+        "rxjs": "7"
+      },
+      "database": "PostgreSQL 18.1 (docker-compose.yml: vendlyhub_postgres)",
+      "modules": [
+        "users",
+        "addresses",
+        "contacts",
+        "establishments",
+        "sessions",
+        "categories",
+        "products",
+        "catalog",
+        "orders"
+      ],
+      "scripts": {
+        "build": "prisma generate && nest build",
+        "start": "nest start",
+        "start:dev": "nest start --watch",
+        "start:prod": "node dist/src/main.js",
+        "lint": "prisma generate && eslint --fix",
+        "test": "prisma generate && jest",
+        "test:e2e": "jest --config ./test/jest-e2e.json",
+        "prisma:migrate:dev": "prisma migrate dev",
+        "prisma:migrate:deploy": "prisma migrate deploy",
+        "prisma:studio": "prisma studio"
+      },
+      "env_vars": [
+        "DATABASE_URL",
+        "JWT_SECRET",
+        "FRONTEND_URL",
+        "PORT (optional, default 3000)",
+        "GOOGLE_CLIENT_ID (optional)",
+        "GOOGLE_CLIENT_SECRET (optional)",
+        "GOOGLE_CALLBACK_URL (optional)"
+      ],
+      "swagger_path": "/api",
+      "static_uploads_path": "/uploads",
+      "uploads_root": "app-backend/uploads/{logos,avatars,products}"
+    }
+  ],
+  "integration_points": [
+    {
+      "from": "web",
+      "to": "backend",
+      "type": "REST/JSON",
+      "transport": "Axios apiClient (baseURL = NEXT_PUBLIC_API_URL)",
+      "auth": "Bearer JWT (1h) + UUID refresh token (7d, hashed server-side)",
+      "notes": [
+        "Access token mirrored to auth-token cookie used by app-web/src/middleware.ts.",
+        "401 (or 404 with 'user not found') triggers forceClientLogout."
+      ]
+    },
+    {
+      "from": "web",
+      "to": "backend",
+      "type": "Static files",
+      "transport": "GET /uploads/...",
+      "notes": [
+        "Served by raw Express static middleware mounted before NestJS routes in main.ts.",
+        "Entity URLs (Establishment.logo, User.avatar, Product.imageUrl) store URL paths."
+      ]
+    },
+    {
+      "from": "backend",
+      "to": "PostgreSQL",
+      "type": "Prisma 7",
+      "notes": ["Single Prisma boundary at src/shared/prisma; TransactionService for multi-step writes."]
+    },
+    {
+      "from": "backend",
+      "to": "SMTP",
+      "type": "nodemailer",
+      "notes": ["Used by MailService in sessions module for password reset emails."]
+    },
+    {
+      "from": "backend",
+      "to": "Google OAuth",
+      "type": "passport-google-oauth20",
+      "notes": ["Conditionally registered when GOOGLE_CLIENT_ID is present."]
+    }
+  ]
+}
