@@ -1,0 +1,28 @@
+---
+description: Vendlyhub project context — load curated rules before any code change
+alwaysApply: true
+---
+
+# Vendlyhub — Required Reading
+
+Before implementing or refactoring code in this repository, load:
+
+- [`_bmad-output/project-context.md`](mdc:_bmad-output/project-context.md) — canonical rules (tech stack, language, framework, testing, workflow, anti-patterns). ~165 rules across 7 sections, LLM-optimized.
+- [`AGENTS.md`](mdc:AGENTS.md) — entry point with links to all long-form docs under [`docs/`](mdc:docs).
+
+## Hard-fail invariants (do NOT violate)
+
+Backend (`app-backend/`):
+- `express.static('/uploads', ...)` MUST be mounted on raw Express in `main.ts` BEFORE `NestFactory.create(...)` — moving it into a Nest module makes Nest's 404 shadow file requests.
+- Only `app-backend/src/shared/prisma/` imports `@prisma/client`. Feature modules go through `PrismaService` or a repository abstraction. Multi-step writes use `TransactionService`, never `prisma.$transaction(...)` directly.
+- Never disable the global `ValidationPipe({ whitelist: true, transform: true })` or `JwtAuthGuard` patterns. Persist hashed credentials/tokens with `bcrypt`, never plaintext. Refresh tokens are NOT rotated on `/auth/refresh`.
+
+Web (`app-web/`):
+- Adding a `page.tsx` requires registering its path in `app-web/src/app/config/navigation.ts` (`ERoutePath` + `ROUTES` or `PUBLIC_ROUTE_PREFIXES`) — otherwise `middleware.ts` treats it as invalid.
+- ALL backend calls go through `app-web/src/app/services/apiClient.ts`. No raw `axios`/`fetch`. Auth state is touched ONLY by `AuthContext` (`localStorage` + `auth-token` cookie kept in sync). Use `normalizeApiError` + `sonner` toasts for HTTP errors.
+
+Workflow:
+- pnpm (10.27.0) is the only package manager; Node pinned to 24.13.0 via `.nvmrc`. Don't bypass the Husky pre-commit `pnpm lint` with `--no-verify`.
+- Conventional Commits style (`feat:`, `fix:`, `chore:`, `refactor:`, `test:`), subjects in English ≤72 chars.
+
+When in doubt, defer to the full rules in `_bmad-output/project-context.md`. When you introduce a new convention or anti-pattern, propose updating that file in the same change.
